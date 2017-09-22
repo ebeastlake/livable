@@ -1,4 +1,5 @@
 import axios from 'axios';
+import queryString from 'query-string';
 
 // actions
 const FIND_PLACES = 'FIND_PLACES';
@@ -11,8 +12,8 @@ export function findPlaces(places) {
 // thunk creator
 export function queryAPI(query) {
 	return function thunk(dispatch) {
-		console.log('in thunk')
-		return axios.get(`/api/places/${query}`)
+		const string = queryString.stringify(query);
+		return axios.get(`/api/places/${string}`)
 		.then(res => res.data)
 		.then(places => {
 			dispatch(findPlaces(places));

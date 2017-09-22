@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Map, TileLayer, Polygon } from 'react-leaflet';
+import { Map, TileLayer } from 'react-leaflet';
 import CustomMarker from './CustomMarker.jsx';
 const position = [40.736467, -74.033760];
 
@@ -16,20 +16,13 @@ class MapBox extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// console.log('nextProps.markers are')
-		// console.log(nextProps.markers)
-		// const nextMarkers = nextProps.places.map(place => {
-		// 	return [place.location.lat, place.location.lng];
-		// });
-
-		// this.setState({markers: nextProps.markers});
 		this.setState({places: nextProps.places})
 	}
 
 	render() {
 		return (
 			<div>
-				<h1>Hello World!</h1>
+				<h1>liv·a·ble: (of an environment or climate) fit to live in</h1>
 				<Map style={{height: "100vh"}} center={position} zoom={13}>
 					<TileLayer
 						url="https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWJlYXN0bGFrZSIsImEiOiJjajd1bXJyejk0OHRxMnhwa3l1ZXVvOXY2In0.8jJCGfw_ynmjZ_4PQ4sU7g"
@@ -39,8 +32,7 @@ class MapBox extends React.Component {
 						const position = [place.location.lat, place.location.lng];
 						const info = {name: place.name, address: place.address};
 						const polygon = place.polygon;
-						return (<div><CustomMarker key={`marker${idx}`} position={position} polygon={polygon} info={info} />
-							<Polygon positions={place.polygon} color="red" /></div>);
+						return (<CustomMarker key={`marker${idx}`} position={position} polygon={polygon} info={info} />);
 					})}
 
 				</Map>
