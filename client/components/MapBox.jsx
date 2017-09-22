@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Polygon } from 'react-leaflet';
 import CustomMarker from './CustomMarker.jsx';
 const position = [40.736467, -74.033760];
 
@@ -37,9 +37,12 @@ class MapBox extends React.Component {
 					/>
 					{this.state.places.map((place, idx) => {
 						const position = [place.location.lat, place.location.lng];
-						const info = {name: place.name, address: place.address}
-						return <CustomMarker key={`marker${idx}`} position={position} info={info} />;
+						const info = {name: place.name, address: place.address};
+						const polygon = place.polygon;
+						return (<div><CustomMarker key={`marker${idx}`} position={position} polygon={polygon} info={info} />
+							<Polygon positions={place.polygon} color="red" /></div>);
 					})}
+
 				</Map>
 			</div>
 		);
