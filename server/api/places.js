@@ -6,6 +6,10 @@ function flipLatLng(coordinate) {
 	return [ coordinate[1], coordinate[0] ];
 };
 
+function getRandColor(){
+	return '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
+}
+
 // GET request for limiting Places API queries
 // router.get('/:query', function(req, res, next) {
 	
@@ -62,11 +66,13 @@ router.get('/:query', function(req, res, next) {
 	axios.get(googleURI)
 		.then(response => {
 			// pull properties of interest off API response
+			const randColor = getRandColor();
 			const places = response.data.results.map(result => {
 				return {
 					name: result.name, 
 					address: result.formatted_address,
-					location: result.geometry.location
+					location: result.geometry.location,
+					color: randColor
 				};
 			});
 
@@ -81,21 +87,20 @@ router.get('/:query', function(req, res, next) {
 			};
 
 			console.log('found all the places!')
-			console.log(places)
 			console.log('but lets only look for three')
 			const couplePlaces = places.slice(0, 3);
+			console.log(couplePlaces)
 
 			// CURRENTLY USING COUPLE PLACES TO TEST FOR TIMING OUT
 			// determine the polygon for each of the defined places
 			const getPolygons = couplePlaces.map(place => {
 		    	const traveltimeURI = `https://mapfruition-traveltime.p.mashape.com/traveltimearea/${mode}/${place.location.lat},${place.location.lng}/${time_min}/true`;
+		    	console.log(traveltimeURI)
 		    	return axios.get(traveltimeURI, headers)
 		    		.then(response => response.data)
 		    		.then(data => {
-		    			console.log('place is')
-		    			console.log(place)
-		    			console.log('coordinates are')
-		    			console.log(data.geometry.coordinates)
+		    			console.log('the data we got back is')
+		    			console.log(data)
 		    			// fix: API returns [long, lat] instead of [lat, long]
 		    			const coordinates = data.geometry.coordinates[0].map(flipLatLng);
 		    			place.polygon = coordinates;
@@ -105,8 +110,6 @@ router.get('/:query', function(req, res, next) {
 
 	    	Promise.all(getPolygons)
 			    .then(places => {
-			    	console.log('response')
-			    	console.log(places)
 			    	res.status(200).json(places);
 			    })
 		})

@@ -54,6 +54,7 @@ class SearchField extends React.Component {
 						</select>
 						<label className="search-label"> from a </label>
 						<input type="text" name="text" value={this.state.text} className="form-control" onChange={this.handleChange} />
+						<input type="submit" className="btn btn-info" value="Search" />
 					</div>
 				</form>
 			</div>
@@ -68,7 +69,7 @@ const mapDispatchToProps = function(dispatch) {
 		createQuery: function(query) {
 			dispatch(addCriteria(query));
 			// commented out for UI testing
-			// dispatch(queryAPI(query));
+			dispatch(queryAPI(query));
 		}
 	}
 }	

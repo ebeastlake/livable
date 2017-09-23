@@ -12,7 +12,7 @@ function CustomMarker(props) {
 	            	<span>{props.info.name}<br/>{props.info.address}</span>
 	          	</Popup>
 			</Marker>
-			<Polygon positions={props.polygon} color="red" />
+			<Polygon positions={props.polygon} color={props.color} />
 			{
 				props.polygon.map((position, idx) => {
 					<Marker key={idx} position={position}></Marker>
