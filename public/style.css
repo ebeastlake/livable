@@ -1,1 +1,30 @@
-#mapid { height: 180px; }
+#time_min {
+	width: 60px;
+}
+
+.search-label {
+	margin: 0px 7px 0px 7px;
+	font-weight: 400;
+	color: #9d9d9d;
+}
+
+#mainNav {
+  background-color: green;
+    height: 50px;
+    margin-top: 0px;
+    display: inline-block;
+    width: 100%;
+}
+
+#sideNav {
+   background-color: yellow;
+    width: 200px;
+    position: absolute;
+    height: 100%;
+}
+
+#mainContent {
+  float: left;
+    width: 84%;
+    margin-left: 200px;
+}

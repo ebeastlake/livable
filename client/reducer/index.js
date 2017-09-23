@@ -4,8 +4,9 @@ import { createLogger } from 'redux-logger';
 
 // import subreducers
 import places from './places';
+import criteria from './criteria';
 
-const reducer = combineReducers({ places });
+const reducer = combineReducers({ places, criteria });
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware, createLogger()));
 
