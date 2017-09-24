@@ -2,15 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import MapBox from './MapBox.jsx';
-import Sidebar from './Sidebar.jsx';
+import SearchResults from './SearchResults.jsx';
+import SearchField from './SearchField.jsx';
+import Logo from './Logo.jsx';
 
 function Main(props) {
 	return (
-        <div id="container">
-          <Sidebar />
-          <div>
-          	<MapBox />
-          </div>
+        <div>
+        	<div id="sidebar">
+        		<Logo />
+        		<SearchField />
+        		<SearchResults />
+          	</div>
+        	<div>
+        		<MapBox />
+        	</div>
         </div>
 	);
 }	

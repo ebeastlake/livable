@@ -10,47 +10,6 @@ function getRandColor(){
 	return '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
 }
 
-// GET request for limiting Places API queries
-// router.get('/:query', function(req, res, next) {
-	
-	// // use hard-coded Places API response 
-	// const places = [ { name: 'Pavana Yoga',
-	// 	address: '251 1st St, Hoboken, NJ 07030, United States',
-	//     location: { lat: 40.7377873, lng: -74.0339273 } },
-	//   { name: 'Powerflow Yoga',
-	//     address: '104 Hudson St, Hoboken, NJ 07030, United States',
-	//     location: { lat: 40.7375444, lng: -74.03005209999999 } },
-	//   { name: 'Surya Yoga Academy',
-	//     address: '79 Hudson St, Hoboken, NJ 07030, United States',
-	//     location: { lat: 40.7363021, lng: -74.0299888 } },
-	//   { name: 'Devotion Yoga and Wellness',
-	//     address: '12 Hudson Pl, Hoboken, NJ 07030, United States',
-	//     location: { lat: 40.73602630000001, lng: -74.0284837 } },
-	//   { name: 'Surya Yoga Academy',
-	//     address: '618 Washington St, Hoboken, NJ 07030, United States',
-	//     location: { lat: 40.74413419999999, lng: -74.0290536 } }];
-
-
- //    const getPolygons = places.map(place => {
- //    	const traveltimeURI = `https://mapfruition-traveltime.p.mashape.com/traveltimearea/${mode}/${place.location.lat},${place.location.lng}/${time_min}/true`;
- //    	const headers = { headers: { 
- //    		"X-Mashape-Key": "MGzRDjo6TmmshIsTFlTrl32FUHWNp13NdPIjsnYryq0X73cWk4", 
- //    		"Accept": "application/json" } };
-
- //    	return axios.get(traveltimeURI, headers)
- //    		.then(response => response.data)
- //    		.then(data => {
- //    			// fix: API returns [long, lat] instead of [lat, long]
- //    			const coordinates = data.geometry.coordinates[0].map(flipLatLng);
- //    			place.polygon = coordinates;
- //    			return place;
- //    		});
- //    });
-
- //    Promise.all(getPolygons).then(places => { res.status(200).json(places); })
-
-// });
-
 // fully-functioning: matches GET requests to /api/places/
 
 router.get('/:query', function(req, res, next) {
@@ -68,6 +27,8 @@ router.get('/:query', function(req, res, next) {
 			// pull properties of interest off API response
 			const randColor = getRandColor();
 			const places = response.data.results.map(result => {
+				console.log('this result is')
+				console.log(result)
 				return {
 					name: result.name, 
 					address: result.formatted_address,

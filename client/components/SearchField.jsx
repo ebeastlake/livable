@@ -42,9 +42,12 @@ class SearchField extends React.Component {
 
 		return (
 			<div>
-				<form className="navbar-form navbar-right" onSubmit={this.handleSubmit}>
+				<form className="navbar-form" onSubmit={this.handleSubmit}>
 					<div className="form-group">
+					<div>
 						<label className="search-label">I want to be...</label>
+					</div>
+					<div>
 						<input id="time_min" type="text" name="time_min" value={this.state.time_min} className="form-control" onChange={this.handleChange} />
 						<label className="search-label">minutes</label>
 						<select name="mode" onChange={this.handleChange}>
@@ -53,8 +56,8 @@ class SearchField extends React.Component {
 							<option value="walk">walking</option>
 						</select>
 						<label className="search-label"> from a </label>
-						<input type="text" name="text" value={this.state.text} className="form-control" onChange={this.handleChange} />
-						<input type="submit" className="btn btn-info" value="Search" />
+						<input id="text" type="text" name="text" value={this.state.text} className="form-control" onChange={this.handleChange} />
+					</div>
 					</div>
 				</form>
 			</div>

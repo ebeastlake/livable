@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import Header from './Header.jsx'
 import PlaceEntry from './PlaceEntry.jsx';
 
-function Sidebar(props) {
+function SearchResults(props) {
 
       const placeList = props.places.map((place, idx) => {
             return <PlaceEntry key={idx} place={place} />;
       });
 
 	return (
-		<div id="sidebar">
-            <div className="sidebar-wrapper">
+            <div className="search-results">
               <div className="panel panel-default" id="features">
                 <div className="panel-heading">
-                  <h3 className="panel-title">Search Criteria</h3>
+                  <h3 className="panel-title">Search Results</h3>
                 </div>
                 <div className="sidebar-table">
                           <table className="table table-hover" id="feature-list">
@@ -30,13 +30,12 @@ function Sidebar(props) {
                               </tr><tr>
                               </tr></thead>
                             <tbody className="list">
-                              {placeList}
+                              { placeList }
                             </tbody>
                           </table>
                         </div>
               </div>
             </div>
-          </div>
 	)
 }
 
@@ -48,4 +47,4 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = null;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
