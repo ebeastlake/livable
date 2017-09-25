@@ -48,7 +48,7 @@ class PlaceEntry extends React.Component {
                                       <button className="close" type="button" data-dismiss="modal" aria-hidden="true" onClick={this.toggleModal}>×</button>
                                       <h4 className="modal-title text-primary" id="feature-title">{this.props.place.name}</h4>
                                     </div>
-                                    <div className="modal-body" id="feature-info"><table className="table table-striped table-bordered table-condensed"><tbody><tr><th>Name</th><td>{this.props.place.name}</td></tr><tr><th>Phone</th><td>(212) 254-4370</td></tr><tr><th>Address</th><td>{this.props.place.address}</td></tr><tr><th>Website</th><td><a className="url-break" href="http://www.newyorkcitytheatre.com/theaters/astorplacetheater/theater.php" target="_blank">http://www.newyorkcitytheatre.com/theaters/astorplacetheater/theater.php</a></td></tr></tbody></table><table /></div>
+                                    <div className="modal-body" id="feature-info"><table className="table table-striped table-bordered table-condensed"><tbody><tr><th>Name</th><td>{this.props.place.name}</td></tr><tr><th>Phone</th><td>{this.props.place.phoneNo}</td></tr><tr><th>Address</th><td>{this.props.place.address}</td></tr><tr><th>Website</th><td><a className="url-break" href={this.props.place.website} target="_blank">{this.props.place.website}</a></td></tr></tbody></table><table /></div>
                                     <div className="modal-footer">
                                       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
