@@ -43,7 +43,7 @@ class SearchField extends React.Component {
 
 		return (
 			<div>
-				<form className="navbar-form" onSubmit={this.handleSubmit}>
+				<form className="navbar-form">
 					<div className="form-group">
 					<div id="intro-line">
 						I want to be...
@@ -60,7 +60,7 @@ class SearchField extends React.Component {
 						<input id="text" type="text" name="text" value={this.state.text} className="form-control" onChange={this.handleChange} />
 					</div>
 					<div>
-						<input type="submit" className=".btn-success" value="Submit" />
+						<button id="search-btn" type="button" className="btn btn-success pull-right" onClick={this.handleSubmit}><i className="fa fa-search" aria-hidden="true"></i></button>
 					</div>
 					</div>
 				</form>

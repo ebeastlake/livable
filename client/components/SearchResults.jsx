@@ -37,7 +37,7 @@ function SearchResults(props) {
                           <div id="spinner">
                 {
                   props.loading ? 
-                    <Halogen.PulseLoader color='#4DAF7C'/> 
+                    <Halogen.PulseLoader color='#5cb85c'/> 
                   :
                     ""
                 }

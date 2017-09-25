@@ -7,11 +7,15 @@
 }
 
 #spinner {
+  margin-top: 10px;
   text-align: center;
 }
 #logo {
   width: 350px;
   margin: 25px 25px 20px 25px;
+}
+#search-btn {
+  margin: 7px 0px;
 }
 
 #intro-line {
@@ -55,9 +59,6 @@ tbody .feature-row .fa-trash {
 html, body, #container {
   width: 100%;
   overflow: hidden;
-}
-body {
-  padding-top: 50px;
 }
 input[type="radio"], input[type="checkbox"] {
   margin: 0;
@@ -121,7 +122,7 @@ input[type="radio"], input[type="checkbox"] {
   position: relative;
   width: 100%;
   height: 750px;
-  top: 50px;
+  top: 5px;
   bottom: 0px;
   overflow: auto;
 }
