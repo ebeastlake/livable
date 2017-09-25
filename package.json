@@ -16,6 +16,7 @@
     "axios": "^0.16.2",
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
+    "halogen": "^0.2.0",
     "leaflet": "^1.2.0",
     "query-string": "^5.0.0",
     "react": "^15.6.1",

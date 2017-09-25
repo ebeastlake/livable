@@ -11,6 +11,8 @@ export function removeCriteria(criteria) {
 	return {type: REMOVE_CRITERIA, criteria: criteria};
 }
 
+
+
 function criteriaReducer(state = [], action) {
 	switch (action.type) {
 		case ADD_CRITERIA: {

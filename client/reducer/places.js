@@ -1,5 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
+import { toggleLoading } from './loading';
 
 // actions
 const FIND_PLACES = 'FIND_PLACES';
@@ -22,16 +23,13 @@ export function queryAPI(query) {
 		return axios.get(`/api/places/${string}`)
 		.then(res => res.data)
 		.then(places => {
-			dispatch(findPlaces(places));
+			dispatch(findPlaces(places))
+			dispatch(toggleLoading());
 		})
 	};
 }
 
 function placesReducer(state = [], action) {
-	console.log('action')
-	console.log(action)
-	console.log('type')
-	console.log(action.type)
 	switch (action.type) {
 		case FIND_PLACES: {
 			return state.concat(action.places);

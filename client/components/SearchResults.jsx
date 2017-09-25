@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import Halogen from 'halogen';
 import Header from './Header.jsx'
 import PlaceEntry from './PlaceEntry.jsx';
 
@@ -33,15 +34,25 @@ function SearchResults(props) {
                               { placeList }
                             </tbody>
                           </table>
-                        </div>
+                          <div id="spinner">
+                {
+                  props.loading ? 
+                    <Halogen.PulseLoader color='#4DAF7C'/> 
+                  :
+                    ""
+                }
               </div>
+                  </div>
+              </div>
+
             </div>
 	)
 }
 
 const mapStateToProps = function(state) {
       return {
-            places: state.places
+            places: state.places,
+            loading: state.loading
       };
 }
 

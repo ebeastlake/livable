@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { queryAPI } from '../reducer/places';
 import { addCriteria } from '../reducer/criteria';
+import { toggleLoading } from '../reducer/loading';
 
 class SearchField extends React.Component {
 
@@ -44,8 +45,8 @@ class SearchField extends React.Component {
 			<div>
 				<form className="navbar-form" onSubmit={this.handleSubmit}>
 					<div className="form-group">
-					<div>
-						<label className="search-label">I want to be...</label>
+					<div id="intro-line">
+						I want to be...
 					</div>
 					<div>
 						<input id="time_min" type="text" name="time_min" value={this.state.time_min} className="form-control" onChange={this.handleChange} />
@@ -57,6 +58,9 @@ class SearchField extends React.Component {
 						</select>
 						<label className="search-label"> from a </label>
 						<input id="text" type="text" name="text" value={this.state.text} className="form-control" onChange={this.handleChange} />
+					</div>
+					<div>
+						<input type="submit" className=".btn-success" value="Submit" />
 					</div>
 					</div>
 				</form>
@@ -71,7 +75,7 @@ const mapDispatchToProps = function(dispatch) {
 	return {
 		createQuery: function(query) {
 			dispatch(addCriteria(query));
-			// commented out for UI testing
+			dispatch(toggleLoading());
 			dispatch(queryAPI(query));
 		}
 	}

@@ -6,9 +6,17 @@
   width: 130px;
 }
 
+#spinner {
+  text-align: center;
+}
 #logo {
   width: 350px;
-  margin: 25px;
+  margin: 25px 25px 20px 25px;
+}
+
+#intro-line {
+  margin: 5px 0px;
+  font-size: 15px;
 }
 
 #top-search-button {
