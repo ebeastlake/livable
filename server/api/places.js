@@ -6,26 +6,22 @@ function flipLatLng(coordinate) {
 	return [ coordinate[1], coordinate[0] ];
 };
 
-function getRandColor(){
-	return '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
-}
-
 // fully-functioning: matches GET requests to /api/places/
 
 router.get('/:query', function(req, res, next) {
 	const parsed = queryString.parse(req.params.query);
+	console.log('query in api route')
+	console.log(parsed)
 	const text = parsed.text.replace(" ", "+");
 	const time_min = parsed.time_min;
 	const mode = parsed.mode;
-
-	const location = '40.736467,-74.033760';
+	const location = `${parsed.lat},${parsed.lng}`;
 	const googleURI = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${text}&location=${location}&radius=500&key=AIzaSyDb-AH1T38bh72l1XSpHJkn4cFm54Hwcm8`;
 
 	// query Google Places API for relevant results within defined area
 	axios.get(googleURI)
 		.then(response => {
 			// pull properties of interest off API response
-			const randColor = getRandColor();
 			const places = response.data.results.map(result => {
 				console.log('this result is')
 				console.log(result)
@@ -33,7 +29,6 @@ router.get('/:query', function(req, res, next) {
 					name: result.name, 
 					address: result.formatted_address,
 					location: result.geometry.location,
-					color: randColor
 				};
 			});
 

@@ -12,18 +12,23 @@ export function findPlaces(places) {
 }
 
 export const deletePlace = function(location) {
-	console.log('i am in delete place');
 	return {type: DELETE_PLACE, location: location};
 }
 
 // thunk creator
-export function queryAPI(query) {
+export function queryAPI(query, randColor) {
 	return function thunk(dispatch) {
+		console.log('query in reducer')
+		console.log(query)
 		const string = queryString.stringify(query);
 		return axios.get(`/api/places/${string}`)
 		.then(res => res.data)
 		.then(places => {
-			dispatch(findPlaces(places))
+			const colorPlaces = places.map(place => {
+				place.color = randColor;
+				return place; 
+			})
+			dispatch(findPlaces(colorPlaces));
 			dispatch(toggleLoading());
 		})
 	};
@@ -32,6 +37,8 @@ export function queryAPI(query) {
 function placesReducer(state = [], action) {
 	switch (action.type) {
 		case FIND_PLACES: {
+			console.log('state right here')
+			console.log(state);
 			return state.concat(action.places);
 		}
 		case DELETE_PLACE: {

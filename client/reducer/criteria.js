@@ -3,14 +3,14 @@ const ADD_CRITERIA = 'ADD_CRITERIA';
 const REMOVE_CRITERIA = 'REMOVE_CRITERIA';
 
 // action creator
-export function addCriteria(criteria) {
+export function addCriteria(criteria, randColor) {
+	criteria.color = randColor;
 	return {type: ADD_CRITERIA, criteria: criteria};
 }
 
 export function removeCriteria(criteria) {
 	return {type: REMOVE_CRITERIA, criteria: criteria};
 }
-
 
 
 function criteriaReducer(state = [], action) {

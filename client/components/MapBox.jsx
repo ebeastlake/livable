@@ -3,25 +3,35 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
 import CustomMarker from './CustomMarker.jsx';
-const position = [40.736467, -74.033760];
+import MapLegend from './MapLegend.jsx';
 
 class MapBox extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			places: this.props.places
+			places: this.props.places,
+			criteria: this.props.criteria,
+			location: this.props.location
 		};
 
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({places: nextProps.places})
+		this.setState({criteria: nextProps.criteria});
+		this.setState({places: nextProps.places});
+		this.setState({location: nextProps.location});
 	}
 
 	render() {
 		return (
-				<Map style={{height: "100vh"}} center={position} zoom={13}>
+				<Map style={{height: "100vh"}} center={[this.state.location.lat, this.state.location.lng]} zoom={13}>
+					{/*
+						this.state.criteria.length ? 
+							<MapLegend criteria={this.state.criteria}/>
+						:
+							""
+					*/}
 					<TileLayer
 						url="https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWJlYXN0bGFrZSIsImEiOiJjajd1bXJyejk0OHRxMnhwa3l1ZXVvOXY2In0.8jJCGfw_ynmjZ_4PQ4sU7g"
 						attribution="OpenStreetMap"
@@ -40,15 +50,11 @@ class MapBox extends React.Component {
 }	
 
 const mapStateToProps = function(state) {
-	// const markers = state.places.map(place => {
-	// 	return [place.location.lat, place.location.lng];
-	// });
-	// console.log(markers)
-	// console.log(markers || [[40.736467, -74.033760]])
-
+	const location = Object.keys(state.location).length ? state.location : {lat: 40.736467, lng: -74.033760};
 	return {
-		// markers: markers
-		places: state.places
+		places: state.places,
+		criteria: state.criteria,
+		location: location
 	};
 };
 

@@ -14,7 +14,8 @@ class SearchField extends React.Component {
 		this.state = {
 			time_min: "",
 			mode: "",
-			text: ""
+			text: "",
+			location: this.props.location
 		};
 
 		// bind necessary event handlers
@@ -22,18 +23,31 @@ class SearchField extends React.Component {
     	this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		console.log('search field received a new location!')
+		console.log(nextProps.location)
+		this.setState({location: nextProps.location});
+	}
+
 	handleChange(event) {
 		// update relevant field
 		// element names must correspond with keys on state
 		const field = event.target.name;
 		const value = event.target.value;
-		console.log(value)
 		this.setState({[field]: value});
 	}
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const query = this.state;
+		const query = {
+			time_min: this.state.time_min,
+			mode: this.state.mode,
+			text: this.state.text,
+			lat: this.state.location.lat,
+			lng: this.state.location.lng
+		};
+		console.log('query in handleSubmit')
+		console.log(query)
 		// need to reset the state before query causes rerender
 		this.setState({time_min: "", mode: "", text: ""});
 		this.props.createQuery(query);
@@ -69,14 +83,24 @@ class SearchField extends React.Component {
 	}
 }
 
-const mapStateToProps = null;
+function getRandColor() {
+	return '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
+};
+
+const mapStateToProps = function(state) {
+	return {
+		location: state.location
+	};
+};
 
 const mapDispatchToProps = function(dispatch) {
 	return {
 		createQuery: function(query) {
-			dispatch(addCriteria(query));
+			const randColor = getRandColor();
+			// sending randColor as a second arg so it doesn't get added to searchQuery
+			dispatch(addCriteria(query, randColor));
 			dispatch(toggleLoading());
-			dispatch(queryAPI(query));
+			dispatch(queryAPI(query, randColor));
 		}
 	}
 }	

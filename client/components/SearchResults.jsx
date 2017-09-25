@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Halogen from 'halogen';
 import Header from './Header.jsx'
 import PlaceEntry from './PlaceEntry.jsx';
+import LocationSearch from './LocationSearch.jsx';
 
 function SearchResults(props) {
 
@@ -17,7 +18,9 @@ function SearchResults(props) {
                 <div className="panel-heading">
                   <h3 className="panel-title">Search Results</h3>
                 </div>
-                <div className="sidebar-table">
+                {
+                  (props.places.length || props.loading) ? 
+                    <div className="sidebar-table">
                           <table className="table table-hover" id="feature-list">
                             <thead className="hidden">
                               <tr>
@@ -35,14 +38,18 @@ function SearchResults(props) {
                             </tbody>
                           </table>
                           <div id="spinner">
-                {
-                  props.loading ? 
-                    <Halogen.PulseLoader color='#5cb85c'/> 
+                          {
+                            props.loading ? 
+                              <Halogen.PulseLoader color='#5cb85c'/> 
+                            :
+                              ""
+                          }
+                          </div>
+                      </div>
                   :
-                    ""
+                    <LocationSearch />
                 }
-              </div>
-                  </div>
+                
               </div>
 
             </div>

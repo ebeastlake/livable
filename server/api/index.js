@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+router.use('/location', require('./location'));
 router.use('/places', require('./places'));
 
 // if a user requests an api route that doesn't exist
