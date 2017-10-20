@@ -1,6 +1,6 @@
-# Hi, I'm livable
+# Hi, I'm livable 🌎 😊
 
-I'm a web application that allows users to search for potential places to live based on travel times (via bike, foot, or car) from desired amenities within a city.
+![Alt text](https://preview.ibb.co/gTXg36/Screen_Shot_2017_10_17_at_10_59_40_PM.png "A screenshot of livable")
 
 ![alt text](http://truegif.com/pictures/gif/1892.gif)
 
